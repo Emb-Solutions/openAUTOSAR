@@ -28,6 +28,10 @@
 # include <stdint.h>
 # include <stddef.h>
 
+/*Typedefs*/
+typedef uint8_t                Std_ReturnType;
+typedef uint8_t                boolean;
+
 /* Global defines*/
 
 # define FALSE                0x00
@@ -42,10 +46,8 @@
 #define STD_ON			         0x01
 #define STD_OFF			      0x00
 
-
-/*Typedefs*/
-
-typedef uint8_t   boolean;
+#define E_OK 					   0x00u
+#define E_NOT_OK 				   (Std_ReturnType)1u
 
 /*Structures*/
 
