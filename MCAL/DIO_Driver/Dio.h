@@ -1,7 +1,7 @@
-/*# Copyright (C) 2024 Sourav Dey
-# This file is part of RTOS Basic Software
+/* Copyright (C) 2024 Sourav Dey
+# This file is part of openAUTOSAR/BSW
 #
-# RTOS Basic Software is free software: you can redistribute it and/or modify
+# openAUTOSAR free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
@@ -9,7 +9,8 @@
 # RTOS Basic Software is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.*/
+# GNU General Public License for more details.
+*/
 
 
 /* File Name: dio_driver.h
@@ -62,9 +63,6 @@ typedef struct {
 
 /*Definition of datatype Dio_LevelType*/
 typedef uint8_t Dio_LevelType;
-
-Dio_LevelType STD_LOW      = 0x00;
-Dio_LevelType STD_HIGH     = 0x01;
 
 
 /** @req SWS_Dio_00187 */
