@@ -176,6 +176,50 @@ void Dio_WriteChannelGroup (const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_Po
 	Dio_WritePort(ChannelGroupIdPtr->port, portVal);
 }
 
+/* [SWS_Dio_00190] Definition of API function Dio_FlipChannel */
+Dio_LevelType Dio_FlipChannel (Dio_ChannelType ChannelId)
+{
+   Dio_LevelType level;
+   Dio_PortLevelType portVal  = DIO_GET_PORT_FROM_CHANNEL_ID(ChannelId);
+   Dio_PortLevelType bit      = DIO_GET_BIT_FROM_CHANNEL_ID(ChannelId);
+
+   if ((portVal & bit) == STD_HIGH)
+   {
+      level = STD_LOW;
+      portVal &= ~bit;
+      Dio_WritePort(DIO_GET_PORT_FROM_CHANNEL_ID(ChannelId), portVal);
+
+   } 
+   else
+   {
+      level = STD_HIGH;
+      portVal |= bit;
+      Dio_WritePort(DIO_GET_PORT_FROM_CHANNEL_ID(ChannelId), portVal);
+   }
+    return level;
+}
+
+/*[SWS_Dio_00300] Definition of API function Dio_MaskedWritePort*/
+void Dio_MaskedWritePort (Dio_PortType PortId,Dio_PortLevelType Level,Dio_PortLevelType Mask)
+{
+    // Getting the port value.
+    Dio_PortLevelType port_value = Dio_ReadPort(PortId);
+
+    // Getting the Level value
+    if (Level == STD_HIGH)
+    {
+        port_value |= Mask;
+    }
+    else
+    {
+        port_value &= ~(Mask);
+
+    }
+    // Writing to the port
+    Dio_WritePort(PortId, port_value);
+
+}
+
 
 
 

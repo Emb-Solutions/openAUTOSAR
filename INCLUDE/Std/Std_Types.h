@@ -34,20 +34,20 @@ typedef uint8_t                boolean;
 
 /* Global defines*/
 
-# define FALSE                0x00
-# define TRUE                 0x01
+# define FALSE                 0x00
+# define TRUE                  0x01
 
-#define STD_HIGH		         0x01
-#define STD_LOW			      0x00
+#define STD_HIGH		       0x01
+#define STD_LOW			       0x00
 
-#define STD_ACTIVE		      0x01
-#define STD_IDLE		         0x00
+#define STD_ACTIVE		       0x01
+#define STD_IDLE		       0x00
 
-#define STD_ON			         0x01
-#define STD_OFF			      0x00
+#define STD_ON			       0x01
+#define STD_OFF			       0x00
 
-#define E_OK 					   0x00u
-#define E_NOT_OK 				   (Std_ReturnType)1u
+#define E_OK 				   0x00u
+#define E_NOT_OK 			   (Std_ReturnType)1u
 
 /*Structures*/
 
@@ -65,6 +65,25 @@ typedef struct {
 	uint8_t ar_minor_version;    /**< Autosar spec. numbers */
 	uint8_t ar_patch_version;    /**< Autosar spec. numbers */
 } Std_VersionInfoType;
+
+/** make compare number... #if version > 10203  ( 1.2.3 ) */
+#define STD_GET_VERSION (_major,_minor,_patch) (_major * 10000 + _minor * 100 + _patch)
+
+/** Create Std_VersionInfoType */
+// PC-Lint Exception MISRA rule 19.12
+//lint -save -esym(960,19.12)
+#define STD_GET_VERSION_INFO(_vi,_module) \
+	if(_vi != NULL) {\
+		((_vi)->vendorID =  _module ## _VENDOR_ID);\
+		((_vi)->moduleID = _module ## _MODULE_ID);\
+		((_vi)->sw_major_version = _module ## _SW_MAJOR_VERSION);\
+		((_vi)->sw_minor_version =  _module ## _SW_MINOR_VERSION);\
+		((_vi)->sw_patch_version =  _module ## _SW_PATCH_VERSION);\
+		((_vi)->ar_major_version =  _module ## _AR_MAJOR_VERSION);\
+		((_vi)->ar_minor_version =  _module ## _AR_MINOR_VERSION);\
+		((_vi)->ar_patch_version =  _module ## _AR_PATCH_VERSION);\
+	}
+//lint -restore
 
 
 typedef struct

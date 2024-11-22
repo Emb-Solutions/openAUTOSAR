@@ -96,4 +96,10 @@ Dio_PortLevelType Dio_ReadChannelGroup (const Dio_ChannelGroupType* ChannelGroup
 /* [SWS_Dio_00138] Definition of API function Dio_WriteChannelGroup */
 void Dio_WriteChannelGroup (const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_PortLevelType Level);
 
+/* [SWS_Dio_00190] Definition of API function Dio_FlipChannel */
+Dio_LevelType Dio_FlipChannel (Dio_ChannelType ChannelId);
+
+/*[SWS_Dio_00300] Definition of API function Dio_MaskedWritePort*/
+void Dio_MaskedWritePort (Dio_PortType PortId,Dio_PortLevelType Level,Dio_PortLevelType Mask);
+
 #endif /*DIO_H_*/
