@@ -46,8 +46,16 @@ typedef uint8_t                boolean;
 #define STD_ON			       0x01
 #define STD_OFF			       0x00
 
-#define E_OK 				   0x00u
-#define E_NOT_OK 			   (Std_ReturnType)1u
+#define E_OK 				   	 0x00u
+#define E_NOT_OK 			   	(Std_ReturnType)1u
+#define E_NO_DTC_AVAILABLE		(Std_ReturnType)2u
+#define E_SESSION_NOT_ALLOWED	(Std_ReturnType)4u
+#define E_PROTOCOL_NOT_ALLOWED	(Std_ReturnType)5u
+#define E_REQUEST_NOT_ACCEPTED	(Std_ReturnType)8u
+#define E_REQUEST_ENV_NOK		(Std_ReturnType)9u
+#define E_PENDING				(Std_ReturnType)10u
+#define E_COMPARE_KEY_FAILED	(Std_ReturnType)11u
+#define E_FORCE_RCRRP			(Std_ReturnType)12u
 
 /*Structures*/
 
