@@ -12,8 +12,7 @@
 # GNU General Public License for more details.
 
 
-
-
+CC := gcc
 
 
 C++M_SRCS := 
