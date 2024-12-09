@@ -14,8 +14,31 @@
 
 
 
--include sources.mk
--include make_config.mk
+#-include sources.mk
+#-include make_config.mk
+#-include devices.mk
 
+#-----------------------------------------------
+#          All individual file makefile
+#-----------------------------------------------
 
+all:
+	@echo '##############################################'
+	@echo '          Building MCAL'
+	@echo '##############################################'
+	make -C ./../MCAL/ -f ./../MCAL/mcal.mk device_sources_build
 
+	@echo '##############################################'
+	@echo ''
+	@echo '          All buildng completed!'
+	@echo ''
+	@echo '##############################################'
+
+clean:
+	rm ../build_artifacts/*.o
+
+	@echo '##############################################'
+	@echo ''
+	@echo '          Cleaning completed!'
+	@echo ''
+	@echo '##############################################'
