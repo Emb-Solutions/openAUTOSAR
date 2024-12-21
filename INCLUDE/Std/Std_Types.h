@@ -11,7 +11,23 @@
 # define UINT_64_T   uint64_t
 
 
+typedef enum
+{
+  RESET = 0U,
+  SET = !RESET
+} FlagStatus, ITStatus;
 
+typedef enum
+{
+  DISABLE = 0U,
+  ENABLE = !DISABLE
+} FunctionalState;
 
+#define IS_FUNCTIONAL_STATE(STATE) (((STATE) == DISABLE) || ((STATE) == ENABLE))
 
+typedef enum
+{
+  SUCCESS = 0U,
+  ERROR = !SUCCESS
+} ErrorStatus;
 
