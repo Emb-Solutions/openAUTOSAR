@@ -15,7 +15,7 @@
 
 
 #-include sources.mk
-#-include make_config.mk
+-include make_config.mk
 #-include devices.mk
 
 #-----------------------------------------------
@@ -26,13 +26,30 @@ all:
 	@echo '##############################################'
 	@echo '          Building MCAL'
 	@echo '##############################################'
-	make -C ./../MCAL/ -f ./../MCAL/mcal.mk device_sources_build
+	make -C ./../MCAL/ -f ./../MCAL/mcal.mk device_sources_build TARGET_MCU=$(TARGET)
+
+	@echo '##############################################'
+	@echo '          Building OS'
+	@echo '##############################################'
+	make -C ./../KERNEL/ -f ./../KERNEL/os.mk os_sources_build TARGET_MCU=$(TARGET)
+
+	@echo '##############################################'
+	@echo '          Linking All together....'
+	@echo '##############################################'
+	$(CC) -o $(BUILD_LOCATION)$(BUILD_ARTIFACT) $(shell ls ../build_artifacts/*.o)  -T$(LINKER_SCRIPT) $(CC_LINKER_INPUT)
+
+
 
 	@echo '##############################################'
 	@echo ''
 	@echo '          All buildng completed!'
 	@echo ''
 	@echo '##############################################'
+
+linking_step: 
+	
+
+
 
 clean:
 	rm ../build_artifacts/*.o

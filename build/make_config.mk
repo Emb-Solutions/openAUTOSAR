@@ -11,8 +11,27 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
+#-----------------------------------------------
+#  Artifacts configutation Based on build inputs
+#-----------------------------------------------
 
-CC := gcc
+CC 							:= arm-none-eabi-gcc
+CC_OPTIMIZATION				:= -O0 -g3 
+CC_EXTRA_FLAGS				:= --specs=nosys.specs
+CC_INPUT_STD				:= -std=gnu99
+CC_WARNINGS					:= -Wall
+CC_TARGET_PROP				:= -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard 
+CC_LINKER_INPUT				:= -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+
+LINKER_SCRIPT := ../MCAL/DEVICES/stm32_f401cdu6_FLASH.ld
+
+BUILD_ARTIFACT_NAME := F4xx_RTOS_BSW_Example
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX :=
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
+BUILD_LOCATION := ../build_artifacts/
+
+
 
 
 C++M_SRCS := 
@@ -51,10 +70,4 @@ CPP_DEPS :=
 
 
 
-#-----------------------------------------------
-#           Artifacts configutation
-#-----------------------------------------------
-BUILD_ARTIFACT_NAME := F4xx_RTOS_BSW_Example
-BUILD_ARTIFACT_EXTENSION := elf
-BUILD_ARTIFACT_PREFIX :=
-BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
+
