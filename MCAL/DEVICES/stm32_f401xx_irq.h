@@ -24,7 +24,13 @@
 extern "C" {
 #endif /* __cplusplus */
 
-void dummy_handler(void);
+void dummy_handler(void)
+{
+    while(1)
+    {
+        
+    }
+}
 
 
 void Reset_Handler(void) __attribute__((weak));

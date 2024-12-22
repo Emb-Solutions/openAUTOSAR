@@ -14,6 +14,7 @@
 #-----------------------------------------------
 #  Artifacts configutation Based on build inputs
 #-----------------------------------------------
+$(RM)						:= rm -rf
 
 CC 							:= arm-none-eabi-gcc
 CC_OPTIMIZATION				:= -O0 -g3 

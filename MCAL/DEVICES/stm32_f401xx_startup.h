@@ -25,7 +25,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-
+void main(void);
 
 
 #ifdef __cplusplus

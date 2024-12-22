@@ -106,7 +106,7 @@ struct
     uint32_t reserved_29;    
     uint32_t reserved_30;
     void (*SPI4_IRQHandler)();                   /* SPI4                         */
-} isr_vector __attribute__ ((section ("isr_vector")));
+} isr_vector_list __attribute__ ((section ("isr_vector")));
 
 
 //  =
