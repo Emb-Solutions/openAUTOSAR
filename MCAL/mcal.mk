@@ -2,6 +2,9 @@
 #-----------------------------------------------
 #          MCAL Source files Based on architecture 
 #-----------------------------------------------
+MCAL_SRC_DIR += \
+../MCAL/DEVICES/
+
 
 # ifeq ($(TARGET_MCU), STM32F429VIT6)
 # MCAL_SRCS += \
@@ -37,7 +40,7 @@ mcal_build: $(MCAL_OBJS)
 
 $(MCAL_OBJS): $(MCAL_SRCS)
 	@echo 'Compiling... $<'
-	$(CC) $< $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@
+	$(CC) $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@ $<
 	@echo ''
 
 

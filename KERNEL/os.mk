@@ -30,7 +30,7 @@ os_build: $(OS_OBJS)
 
 $(OS_OBJS): $(OS_SRCS)
 	@echo 'Compiling... $<'
-	$(CC) $< $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@
+	$(CC) $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@ $<
 	@echo ''
 
 

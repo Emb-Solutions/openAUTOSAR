@@ -1,0 +1,37 @@
+
+F4xx_RTOS_BSW_Example.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000000  08000000  08000000  00010018  2**0
+                  CONTENTS
+  1 .text         00000018  08000000  08000000  00010000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000018  08000018  00010018  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .data         00000000  20000000  20000000  00010018  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .bss          00000000  20000000  08000018  00000000  2**0
+                  ALLOC
+  5 ._user_heap_stack 00000600  20000000  08000018  00020000  2**0
+                  ALLOC
+  6 .ARM.attributes 00000030  00000000  00000000  00010018  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+08000000 <_init>:
+ 8000000:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000002:	bf00      	nop
+ 8000004:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000006:	bc08      	pop	{r3}
+ 8000008:	469e      	mov	lr, r3
+ 800000a:	4770      	bx	lr
+
+0800000c <_fini>:
+ 800000c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800000e:	bf00      	nop
+ 8000010:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000012:	bc08      	pop	{r3}
+ 8000014:	469e      	mov	lr, r3
+ 8000016:	4770      	bx	lr

@@ -68,8 +68,7 @@ main-build: $(BUILD_ARTIFACT) secondary-outputs
 secondary-outputs: $(SIZE_OUTPUT) $(BUILD_ARTIFACT).list 
 
 
-$(BUILD_ARTIFACT): os_build mcal_build
-	@echo 'Objects: $(OBJS)'
+$(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: os_build mcal_build
 	$(CPP) -o $(BUILD_ARTIFACT) @"object.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"$(LINKER_SCRIPT)" -Wl,-Map="$(BUILD_ARTIFACT).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo '##############################################'
 	@echo ''
@@ -80,12 +79,11 @@ $(BUILD_ARTIFACT): os_build mcal_build
 
 
 $(SIZE_OUTPUT): $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_DEPS)
-	@echo $(EXECUTABLES)
-	arm-none-eabi-size  $(BUILD_ARTIFACT)
 	@echo '##############################################'
 	@echo ''
 	@echo '   $(BUILD_ARTIFACT) > $@ Size Out Generated ...'
 	@echo ''
+	arm-none-eabi-size  $(BUILD_ARTIFACT)
 	@echo '##############################################'
 	@echo ' '
 
@@ -102,6 +100,7 @@ $(BUILD_ARTIFACT).list: $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_D
 
 
 clean:
+	$(RM) $(BUILD_ARTIFACT).list, $(SIZE_OUTPUT)
 	@echo '##############################################'
 	@echo ''
 	@echo '          Cleaning completed!'
