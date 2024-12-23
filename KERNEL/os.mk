@@ -1,38 +1,43 @@
+-include ../make_config.mk
 
 #-----------------------------------------------
-#          Directories
-#-----------------------------------------------
-
-OBJECT_DIRECTORY := ./build_artifacts/
-SOURCE_DIRECTORY := ./OS/
-
-
-#-----------------------------------------------
-#          MCAL Source files
+#   MCAL Source files Reapective to build dir 
 #-----------------------------------------------
 OS_SRCS += \
-./Os/Os.c \
+../KERNEL/Os/Os.c \
 
 
 #-----------------------------------------------
 #          MCAL object files
 #-----------------------------------------------
-OBJS += \
+OS_OBJS += \
 ./build_artifacts/Os.o
 
 
+os_build: $(OS_OBJS)
+# 	@for p in  $(OS_SRCS); \
+#     do \
+# 		for y in $(OS_OBJS);\
+#       	do\
+#         	echo ; \
+#     		echo Compiling... $$p; \
+# 			echo ; \
+# 			$(CC) $$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $$y ; \
+#     	done \
+#     done
 
-
-
-$(OBJECT_DIRECTORY)%.o: $(SOURCE_DIRECTORY)%.c ./subdir.mk
-	$(CC) "$<" $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o "$@"
 	
+
+$(OS_OBJS): $(OS_SRCS)
+	@echo 'Compiling... $<'
+	$(CC) $< $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@
+	@echo ''
 
 
 clean: os_clean
 
 os_clean: 
-	$(RM)	$(MCAL_OBJS)
+	$(RM)	$(OS_OBJS)
 
 
 .PHONY: os_clean

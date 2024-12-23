@@ -18,12 +18,6 @@
 
 #include "stm32_f401xx.h"
 
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 void dummy_handler(void)
 {
     while(1)
@@ -31,6 +25,12 @@ void dummy_handler(void)
         
     }
 }
+
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 
 void Reset_Handler(void) __attribute__((weak));

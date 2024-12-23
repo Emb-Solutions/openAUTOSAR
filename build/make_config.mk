@@ -19,7 +19,7 @@ $(RM)						:= rm -rf
 CC 							:= arm-none-eabi-gcc
 CPP							:= arm-none-eabi-g++
 CC_OBJDUMP					:= arm-none-eabi-objdump
-CC_OPTIMIZATION				:= -O0 -g3 
+CC_OPTIMIZATION				:= -O0 -g3 -c
 CC_EXTRA_FLAGS				:= --specs=nosys.specs
 CC_INPUT_STD				:= -std=gnu99
 CC_WARNINGS					:= -Wall

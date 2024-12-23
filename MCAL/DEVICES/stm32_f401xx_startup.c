@@ -2,7 +2,7 @@
 
 #include "stm32_f401xx_startup.h"
 
-struct 
+struct  __attribute__ ((section ("isr_vector"))) isr_vector_list  
 {
     uint32_t _estack;
     void (*Reset_Handler)(void);
@@ -106,7 +106,7 @@ struct
     uint32_t reserved_29;    
     uint32_t reserved_30;
     void (*SPI4_IRQHandler)();                   /* SPI4                         */
-} isr_vector_list __attribute__ ((section ("isr_vector")));
+};
 
 
 //  =
@@ -117,7 +117,7 @@ void Reset_Handler(void)
 
 
 
-    main();
+    // main();
 }
 
 

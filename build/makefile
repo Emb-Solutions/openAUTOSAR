@@ -15,7 +15,7 @@
 -include ../makefile.init
 
 -include ./make_config.mk
-# -include ../MCAL/mcal.mk
+-include ../MCAL/mcal.mk
 -include ../KERNEL/os.mk
 
 
@@ -68,7 +68,7 @@ main-build: $(BUILD_ARTIFACT) secondary-outputs
 secondary-outputs: $(SIZE_OUTPUT) $(BUILD_ARTIFACT).list 
 
 
-$(BUILD_ARTIFACT): $(OBJS) $(USER_OBJS) $(LINKER_SCRIPT) makefile object.list $(OPTIONAL_TOOL_DEPS)
+$(BUILD_ARTIFACT): os_build mcal_build
 	@echo 'Objects: $(OBJS)'
 	$(CPP) -o $(BUILD_ARTIFACT) @"object.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"$(LINKER_SCRIPT)" -Wl,-Map="$(BUILD_ARTIFACT).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo '##############################################'
