@@ -1,2 +1,3 @@
-../build_artifacts/Os.o
-
+"./build_artifacts/Os.o"
+"./build_artifacts/stm32_f401xx_startup.o"
+"./build_artifacts/stm32_f401xx_irq.o"

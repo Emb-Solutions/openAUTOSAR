@@ -17,6 +17,8 @@
 $(RM)						:= rm -rf
 
 CC 							:= arm-none-eabi-gcc
+CPP							:= arm-none-eabi-g++
+CC_OBJDUMP					:= arm-none-eabi-objdump
 CC_OPTIMIZATION				:= -O0 -g3 
 CC_EXTRA_FLAGS				:= --specs=nosys.specs
 CC_INPUT_STD				:= -std=gnu99
@@ -30,7 +32,7 @@ BUILD_ARTIFACT_NAME := F4xx_RTOS_BSW_Example
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
-BUILD_LOCATION := ../build_artifacts/
+BUILD_LOCATION := ./build_artifacts/
 
 
 

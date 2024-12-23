@@ -1,12 +1,9 @@
 
--include ../build/make_config.mk
-
-
 #-----------------------------------------------
 #          Directories
 #-----------------------------------------------
 
-OBJECT_DIRECTORY := ../build_artifacts/
+OBJECT_DIRECTORY := ./build_artifacts/
 SOURCE_DIRECTORY := ./OS/
 
 
@@ -20,8 +17,8 @@ OS_SRCS += \
 #-----------------------------------------------
 #          MCAL object files
 #-----------------------------------------------
-OS_OBJS += \
-../build_artifacts/Os.o \
+OBJS += \
+./build_artifacts/Os.o
 
 
 
@@ -29,13 +26,16 @@ OS_OBJS += \
 
 $(OBJECT_DIRECTORY)%.o: $(SOURCE_DIRECTORY)%.c ./subdir.mk
 	$(CC) "$<" $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o "$@"
-
-
-os_sources_build: $(OS_OBJS)
 	
 
 
+clean: os_clean
 
+os_clean: 
+	$(RM)	$(MCAL_OBJS)
+
+
+.PHONY: os_clean
 
 
 
