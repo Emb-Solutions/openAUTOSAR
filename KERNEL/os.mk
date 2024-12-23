@@ -3,41 +3,39 @@
 #-----------------------------------------------
 #   MCAL Source files Reapective to build dir 
 #-----------------------------------------------
+
+OS_SRC_DIR += \
+../KERNEL/
+
+OS_OBJ_DIR += \
+./build_artifacts/
+
+
 OS_SRCS += \
-../KERNEL/Os/Os.c \
+Os/Os.c \
 
 
 #-----------------------------------------------
 #          MCAL object files
 #-----------------------------------------------
 OS_OBJS += \
-./build_artifacts/Os.o
+Os/Os.o
 
 
-os_build: $(OS_OBJS)
-# 	@for p in  $(OS_SRCS); \
-#     do \
-# 		for y in $(OS_OBJS);\
-#       	do\
-#         	echo ; \
-#     		echo Compiling... $$p; \
-# 			echo ; \
-# 			$(CC) $$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $$y ; \
-#     	done \
-#     done
-
-	
-
-$(OS_OBJS): $(OS_SRCS)
-	@echo 'Compiling... $<'
-	$(CC) $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@ $<
-	@echo ''
+os_build:
+	@for p in  $(OS_SRCS); \
+	do \
+	echo ; \
+	echo Compiling ... $$p ; \
+	echo ; \
+	$(CC) $(OS_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(OS_OBJ_DIR)$$p.o ; \
+	done
 
 
 clean: os_clean
 
 os_clean: 
-	$(RM)	$(OS_OBJS)
+	$(RM)	$(OS_OBJ_DIR)$(OS_OBJS)
 
 
 .PHONY: os_clean

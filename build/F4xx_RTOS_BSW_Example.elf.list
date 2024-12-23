@@ -3,35 +3,72 @@ F4xx_RTOS_BSW_Example.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .isr_vector   00000000  08000000  08000000  00010018  2**0
+  0 .isr_vector   00000000  08000000  08000000  00010028  2**0
                   CONTENTS
-  1 .text         00000018  08000000  08000000  00010000  2**2
+  1 .text         00000028  08000000  08000000  00010000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000000  08000018  08000018  00010018  2**0
+  2 .rodata       00000000  08000028  08000028  00010028  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .data         00000000  20000000  20000000  00010018  2**0
+  3 .data         00000000  20000000  20000000  00010028  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .bss          00000000  20000000  08000018  00000000  2**0
+  4 .bss          00000000  20000000  08000028  00000000  2**0
                   ALLOC
-  5 ._user_heap_stack 00000600  20000000  08000018  00020000  2**0
+  5 ._user_heap_stack 00000600  20000000  08000028  00020000  2**0
                   ALLOC
-  6 .ARM.attributes 00000030  00000000  00000000  00010018  2**0
+  6 .ARM.attributes 00000030  00000000  00000000  00010028  2**0
                   CONTENTS, READONLY
+  7 .debug_info   00000082  00000000  00000000  00010058  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_abbrev 00000047  00000000  00000000  000100da  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_aranges 00000020  00000000  00000000  00010121  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 10 .debug_macro  0000d41f  00000000  00000000  00010141  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 11 .debug_line   000003c4  00000000  00000000  0001d560  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 12 .debug_str    000501a4  00000000  00000000  0001d924  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .comment      00000049  00000000  00000000  0006dac8  2**0
+                  CONTENTS, READONLY
+ 14 .debug_frame  00000030  00000000  00000000  0006db14  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
 
-08000000 <_init>:
- 8000000:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000002:	bf00      	nop
- 8000004:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000006:	bc08      	pop	{r3}
- 8000008:	469e      	mov	lr, r3
- 800000a:	4770      	bx	lr
+08000000 <Reset_Handler>:
 
-0800000c <_fini>:
- 800000c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800000e:	bf00      	nop
- 8000010:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000012:	bc08      	pop	{r3}
- 8000014:	469e      	mov	lr, r3
- 8000016:	4770      	bx	lr
+
+//  =
+
+void Reset_Handler(void)
+{
+ 8000000:	b480      	push	{r7}
+ 8000002:	af00      	add	r7, sp, #0
+
+
+
+
+    // main();
+}
+ 8000004:	bf00      	nop
+ 8000006:	46bd      	mov	sp, r7
+ 8000008:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800000c:	4770      	bx	lr
+	...
+
+08000010 <_init>:
+ 8000010:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000012:	bf00      	nop
+ 8000014:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000016:	bc08      	pop	{r3}
+ 8000018:	469e      	mov	lr, r3
+ 800001a:	4770      	bx	lr
+
+0800001c <_fini>:
+ 800001c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800001e:	bf00      	nop
+ 8000020:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000022:	bc08      	pop	{r3}
+ 8000024:	469e      	mov	lr, r3
+ 8000026:	4770      	bx	lr

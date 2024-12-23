@@ -100,7 +100,7 @@ $(BUILD_ARTIFACT).list: $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_D
 
 
 clean:
-	$(RM) $(BUILD_ARTIFACT).list, $(SIZE_OUTPUT)
+	$(RM) $(BUILD_ARTIFACT).list, $(SIZE_OUTPUT), $(BUILD_ARTIFACT), $(BUILD_ARTIFACT).map
 	@echo '##############################################'
 	@echo ''
 	@echo '          Cleaning completed!'
