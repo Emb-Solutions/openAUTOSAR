@@ -109,16 +109,11 @@ struct  __attribute__ ((section ("isr_vector"))) isr_vector_list
 };
 
 
-//  =
-
 void Reset_Handler(void)
 {
 
 
 
 
-    // main();
+    main();
 }
-
-
-

@@ -13,17 +13,16 @@
 # GNU General Public License for more details.
 */
 
-#ifndef __STM32F401xx_STARTUP_H__
-#define __STM32F401xx_STARTUP_H__
+#ifndef __MAIN_H__
+#define __MAIN_H__
 
-#include "./stm32_f401xx.h"
-#include "./stm32_f401xx_irq.h"
-#include "../../KERNEL/Os/main.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+
+int main(void);
 
 
 #ifdef __cplusplus

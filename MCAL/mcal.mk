@@ -42,11 +42,6 @@ mcal_build:
 	done
 	
 
-# $(MCAL_OBJS): $(MCAL_SRCS)
-# 	@echo 'Compiling... $<'
-# 	$(CC) $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP)   -o $@ $(word $$c ,$^)
-# 	@echo ''
-
 
 
 clean: mcal_clean
