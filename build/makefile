@@ -103,7 +103,7 @@ clean_enviornment:
 	@echo > ./object.list
 
 clean:
-	$(RM) $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT) $(BUILD_ARTIFACT).list $(SIZE_OUTPUT) $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map
+	$(RM) $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT) object.list $(BUILD_ARTIFACT).list $(SIZE_OUTPUT) $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map
 	@echo '##############################################'
 	@echo ''
 	@echo '          Cleaning completed!'

@@ -1,6 +1,0 @@
-
-./build_artifacts/DEVICES/stm32_f401xx_startup.s.o
-./build_artifacts/DEVICES/stm32_f401xx_irq.c.o
-./build_artifacts/DEVICES/stm32_f401cdu6_system.c.o
-./build_artifacts/Os/Os.c.o
-./build_artifacts/Os/main.c.o
