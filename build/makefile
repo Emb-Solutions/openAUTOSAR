@@ -17,6 +17,8 @@
 -include ./make_config.mk
 -include ../MCAL/mcal.mk
 -include ../KERNEL/os.mk
+-include ../MCAL/startup.mk
+
 
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -68,7 +70,7 @@ main-build: $(BUILD_ARTIFACT) secondary-outputs
 secondary-outputs: $(SIZE_OUTPUT) $(BUILD_ARTIFACT).list 
 
 
-$(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: mcal_build os_build 
+$(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: startup_build mcal_build os_build 
 	$(CPP) -o $(BUILD_ARTIFACT) @"object.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"$(LINKER_SCRIPT)" -Wl,-Map="$(BUILD_ARTIFACT).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo '##############################################'
 	@echo ''
@@ -100,7 +102,7 @@ $(BUILD_ARTIFACT).list: $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_D
 
 
 clean:
-	$(RM) $(BUILD_ARTIFACT).list, $(SIZE_OUTPUT), $(BUILD_ARTIFACT), $(BUILD_ARTIFACT).map
+	$(RM) $(BUILD_ARTIFACT).list $(SIZE_OUTPUT) $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map
 	@echo '##############################################'
 	@echo ''
 	@echo '          Cleaning completed!'

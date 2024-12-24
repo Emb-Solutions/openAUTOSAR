@@ -20,11 +20,13 @@ CC 							:= arm-none-eabi-gcc
 CPP							:= arm-none-eabi-g++
 CC_OBJDUMP					:= arm-none-eabi-objdump
 CC_OPTIMIZATION				:= -O0 -g3 -c
-CC_EXTRA_FLAGS				:= --specs=nosys.specs
+CC_EXTRA_FLAGS				:= --specs=nano.specs
 CC_INPUT_STD				:= -std=gnu99
 CC_WARNINGS					:= -Wall
 CC_TARGET_PROP				:= -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard 
 CC_LINKER_INPUT				:= -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+CC_ASSEMBLER_FLAGS			:= -x assembler-with-cpp
+
 
 LINKER_SCRIPT := ../MCAL/DEVICES/stm32_f401cdu6_FLASH.ld
 

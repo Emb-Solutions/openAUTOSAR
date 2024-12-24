@@ -2,10 +2,10 @@
 #-----------------------------------------------
 #          MCAL Source files Based on architecture 
 #-----------------------------------------------
-MCAL_SRC_DIR += \
+STARTUP_SRC_DIR += \
 ../MCAL/
 
-MCAL_OBJ_DIR += \
+STARTUP_OBJ_DIR += \
 ./build_artifacts/
 
 # ifeq ($(TARGET_MCU), STM32F429VIT6)
@@ -15,39 +15,38 @@ MCAL_OBJ_DIR += \
 # endif
 
 # ifeq ($(TARGET_MCU), STM32F401CDU6)
-MCAL_SRCS += \
-DEVICES/stm32_f401xx_irq.c \
 
-
+STARTUP_SRCS += \
+DEVICES/stm32_f401xx_startup.s \
 
 # endif
 
 #-----------------------------------------------
 #          MCAL object files 
 #-----------------------------------------------
-MCAL_OBJS += \
-DEVICES/stm32_f401xx_irq.o \
+STARTUP_OBJS += \
+DEVICES/stm32_f401xx_startup.o \
 
 
 
 
-mcal_build:
-	@for p in  $(MCAL_SRCS); \
+startup_build:
+	@for p in  $(STARTUP_SRCS); \
 	do \
 	echo ; \
 	echo Compiling ... $$p ; \
 	echo ; \
-	$(CC) $(MCAL_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(MCAL_OBJ_DIR)$$p.o ; \
+	$(CC) $(CC_OPTIMIZATION) $(CC_ASSEMBLER_FLAGS) $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(STARTUP_OBJ_DIR)$$p.o $(STARTUP_SRC_DIR)$$p ; \
 	done
 	
 
 
 
-clean: mcal_clean
+clean: startup_clean
 
-mcal_clean: 
-	$(RM)	$(MCAL_OBJ_DIR)$(MCAL_OBJS)
+startup_clean: 
+	$(RM)	$(STARTUP_OBJ_DIR)$(STARTUP_OBJS)
 
 
-.PHONY: mcal_clean
+.PHONY: startup_clean
 

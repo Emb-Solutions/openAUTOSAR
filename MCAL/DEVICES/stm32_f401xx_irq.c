@@ -3,32 +3,50 @@
 
 __WEAK void  NMI_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 }
 
 __WEAK void HardFault_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 }
 
 __WEAK void MemManage_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 }
 
 __WEAK void BusFault_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 }
 
 __WEAK void UsageFault_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 }
 
 __WEAK void DebugMon_Handler(void)
 {
-
+    while(1)
+    {
+        
+    }
 };
 
 __WEAK void SVC_Handler(void)
