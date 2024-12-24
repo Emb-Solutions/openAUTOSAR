@@ -17,7 +17,7 @@ MCAL_OBJ_DIR += \
 # ifeq ($(TARGET_MCU), STM32F401CDU6)
 MCAL_SRCS += \
 DEVICES/stm32_f401xx_irq.c \
-
+DEVICES/stm32_f401cdu6_system.c
 
 
 # endif
@@ -27,7 +27,7 @@ DEVICES/stm32_f401xx_irq.c \
 #-----------------------------------------------
 MCAL_OBJS += \
 DEVICES/stm32_f401xx_irq.o \
-
+DEVICES/stm32_f401cdu6_system.o
 
 
 
