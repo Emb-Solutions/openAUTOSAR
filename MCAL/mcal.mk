@@ -3,8 +3,6 @@
 MCAL_SRC_DIR += \
 ../MCAL/
 
-MCAL_OBJ_DIR += \
-./build_artifacts/
 
 #################  Configurations ##################################
 #-----------------------------------------------
@@ -13,15 +11,17 @@ MCAL_OBJ_DIR += \
 
 ifeq ($(TARGET_MCU), STM32F429VIT6)
 MCAL_SRCS += \
-./DEVICES/stm32_f429xx_irq.c
-
+DEVICES/stm32_f429xx_irq.c \
+IO_Driver/Dio.c
 endif
+
 
 ifeq ($(TARGET_MCU), STM32F401CDU6)
 MCAL_SRCS += \
 DEVICES/stm32_f401xx_irq.c \
-DEVICES/stm32_f401cdu6_system.c
-
+DEVICES/stm32_f401cdu6_system.c \
+IO_Driver/DIO_Driver/Dio.c \
+Microcontroller_Drivers/MCU_Driver/Mcu.c
 endif
 
 #-----------------------------------------------
@@ -29,8 +29,9 @@ endif
 #-----------------------------------------------
 MCAL_OBJS += \
 DEVICES/stm32_f401xx_irq.o \
-DEVICES/stm32_f401cdu6_system.o
-
+DEVICES/stm32_f401cdu6_system.o \
+IO_Driver/DIO_Driver/Dio.o	\
+IO_Driver/DIO_Driver/Mcu.o
 #################  END Configurations #############################
 
 
@@ -46,14 +47,13 @@ mcal_build:
 	echo ; \
 	echo Compiling ... $$p ; \
 	echo ; \
-	$(CC) $(MCAL_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(MCAL_OBJ_DIR)$$p.o ; \
-	echo "$(MCAL_OBJ_DIR)$$p.o" >> object.list ; \
+	$(CC) $(MCAL_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(OBJECTS_LOCATION)$$p.o ; \
+	echo "$(OBJECTS_LOCATION)$$p.o" >> object.list ; \
 	done
 	
 clean: mcal_clean
 
-mcal_clean: 
-	$(RM)	$(MCAL_OBJ_DIR)$(MCAL_OBJS)
+mcal_clean:
 
 .PHONY: mcal_clean
 

@@ -37,8 +37,6 @@ endif
 
 -include ../makefile.defs
 
-BUILD_EXECUTABLE_FOLDER := \
-../build_executables/
 
 OPTIONAL_TOOL_DEPS := \
 $(wildcard ../makefile.defs) \
@@ -70,7 +68,7 @@ secondary-outputs: $(SIZE_OUTPUT) $(BUILD_ARTIFACT).list
 
 
 $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: startup_build mcal_build os_build 
-	$(CPP) -o $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT) @"object.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"$(LINKER_SCRIPT)" -Wl,-Map="$(BUILD_ARTIFACT).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	$(CPP) -o $(BUILD_LOCATION)$(BUILD_ARTIFACT) @"object.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"$(LINKER_SCRIPT)" -Wl,-Map="$(BUILD_LOCATION)$(BUILD_ARTIFACT).map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo '##############################################'
 	@echo ''
 	@echo '   Artifcact Generated [ $@ ]'
@@ -81,29 +79,25 @@ $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: startup_build mcal_build os_build
 
 $(SIZE_OUTPUT): $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_DEPS)
 	@echo '##############################################'
-	@echo ''
-	@echo '   $(BUILD_ARTIFACT) > $@ Size Out Generated ...'
-	@echo ''
-	arm-none-eabi-size  $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT)
+	arm-none-eabi-size  $(BUILD_LOCATION)$(BUILD_ARTIFACT)
 	@echo '##############################################'
 	@echo ' '
 
 
 $(BUILD_ARTIFACT).list: $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT) > "$(BUILD_ARTIFACT).list"
+	arm-none-eabi-objdump -h -S $(BUILD_LOCATION)$(BUILD_ARTIFACT) > "$(BUILD_LOCATION)$(BUILD_ARTIFACT).list"
 	@echo '##############################################'
 	@echo ''
 	@echo '   $(BUILD_ARTIFACT).list Generated...'
 	@echo ''
 	@echo '##############################################'
 	@echo ' '
-	@echo ' '
 
 clean_enviornment:
 	@echo > ./object.list
 
 clean:
-	$(RM) $(BUILD_EXECUTABLE_FOLDER)$(BUILD_ARTIFACT) object.list $(BUILD_ARTIFACT).list $(SIZE_OUTPUT) $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map
+	$(RM) $(BUILD_LOCATION)$(BUILD_ARTIFACT) object.list $(BUILD_LOCATION)$(BUILD_ARTIFACT).list $(SIZE_OUTPUT) $(BUILD_LOCATION)$(BUILD_ARTIFACT).map
 	@echo '##############################################'
 	@echo ''
 	@echo '          Cleaning completed!'
