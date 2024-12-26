@@ -27,7 +27,7 @@
 */
 void Mcu_Init (const Mcu_ConfigType* ConfigPtr )
 {
-
+  
 }
 
 

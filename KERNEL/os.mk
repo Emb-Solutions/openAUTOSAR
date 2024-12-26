@@ -37,7 +37,7 @@ os_build:
 	echo ; \
 	echo Compiling ... $$p ; \
 	echo ; \
-	$(CC) $(OS_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(OBJECTS_LOCATION)$$p.o ; \
+	$(CC) -D$(TARGET_MCU) $(OS_SRC_DIR)$$p $(CC_OPTIMIZATION)  $(CC_EXTRA_FLAGS) $(CC_INPUT_STD) $(CC_WARNINGS) $(CC_TARGET_PROP) -o $(OBJECTS_LOCATION)$$p.o ; \
 	echo "$(OBJECTS_LOCATION)$$p.o" >> object.list ; \
 	done
 

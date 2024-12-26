@@ -27,6 +27,15 @@
 /* Include files*/
 #include "../../../INCLUDE/Std/Std_Types.h"
 
+/* Low Level Device abstructon */
+#include "../../DEVICES/Device.h"
+
+
+
+
+
+
+
 
 /*Hw specific defines*/
 #define DIO_END_OF_LIST                         (0xFFFFFFFFu)

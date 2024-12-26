@@ -17,6 +17,7 @@
 #define __MCU_H__
 
 #include "../../../INCLUDE/Std/Std_Types.h"
+#include "../../DEVICES/Device.h"
 
 
 /*

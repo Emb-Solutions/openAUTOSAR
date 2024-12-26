@@ -79,7 +79,7 @@ $(BUILD_ARTIFACT) $(BUILD_ARTIFACT).map: startup_build mcal_build os_build
 
 $(SIZE_OUTPUT): $(BUILD_ARTIFACT) makefile object.list $(OPTIONAL_TOOL_DEPS)
 	@echo '##############################################'
-	arm-none-eabi-size  $(BUILD_LOCATION)$(BUILD_ARTIFACT)
+	@arm-none-eabi-size  --format=sysv --radix=16 $(BUILD_LOCATION)$(BUILD_ARTIFACT)
 	@echo '##############################################'
 	@echo ' '
 
